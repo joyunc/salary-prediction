@@ -1,0 +1,27 @@
+# 原始資料（TEPS 資料使用協議不可公開）
+data/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# 環境
+.venv/
+venv/
+env/
+
+# macOS
+.DS_Store
+
+# 編輯器
+.vscode/
+.idea/
