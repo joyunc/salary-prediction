@@ -62,14 +62,14 @@ def encode_for_trees(X: pd.DataFrame, cat_cols: list):
 # ── Classical ML ──────────────────────────────────────────────────────────────
 
 def train_cart(X_tr, y_tr, cv=10):
-    best_score, best_cp = -np.inf, 0.0
-    for cp in np.linspace(0.0, 0.05, 20):
-        m = DecisionTreeRegressor(min_impurity_decrease=cp, random_state=2056)
+    best_score, best_depth = -np.inf, 1
+    for depth in range(1, 21):
+        m = DecisionTreeRegressor(max_depth=depth, random_state=2056)
         s = cross_val_score(m, X_tr, y_tr, cv=cv, scoring="r2").mean()
         if s > best_score:
-            best_score, best_cp = s, cp
-    print(f"  Best CP={best_cp:.4f}  (CV R²={best_score:.4f})")
-    m = DecisionTreeRegressor(min_impurity_decrease=best_cp, random_state=2056)
+            best_score, best_depth = s, depth
+    print(f"  Best max_depth={best_depth}  (CV R²={best_score:.4f})")
+    m = DecisionTreeRegressor(max_depth=best_depth, random_state=2056)
     m.fit(X_tr, y_tr)
     return m
 

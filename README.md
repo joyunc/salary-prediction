@@ -13,8 +13,8 @@ Predicts the salary of Taiwanese university graduates at two career stages using
 
 | Target | Survey Year | Description | Sample Size |
 |--------|-------------|-------------|-------------|
-| **Starting Salary (M1)** | 2014 | Salary upon entering the workforce | n = 1,511 |
-| **Current Salary (M2)** | 2019 | Salary ~5 years into career | n = 769 |
+| **Starting Salary (M1)** | 2014 | Salary upon entering the workforce | n = 1,591 |
+| **Current Salary (M2)** | 2019 | Salary ~5 years into career | n = 849 |
 
 ---
 
@@ -36,27 +36,27 @@ Five models are trained and compared end-to-end:
 
 Test set performance (30% held-out split, random seed = 2056):
 
-### Starting Salary (M1, n = 1,511)
+### Starting Salary (M1, n = 1,591)
 
 | Model | Test R² | Test RMSE (NTD) | Test MAPE |
 |-------|---------|-----------------|-----------|
-| CART | -0.603 | 10,041 | 24.75% |
-| **Random Forest** | **0.284** | **6,710** | **16.48%** |
-| MLP | 0.209 | 7,053 | 17.13% |
-| TabTransformer | 0.137 | 7,369 | 18.22% |
-| FT-Transformer | 0.168 | 7,233 | 17.49% |
+| CART | 0.194 | 7,402 | 18.70% |
+| **Random Forest** | **0.277** | **7,011** | **17.90%** |
+| MLP | 0.173 | 7,495 | 18.67% |
+| TabTransformer | 0.150 | 7,603 | 18.62% |
+| FT-Transformer | 0.259 | 7,098 | 17.21% |
 
-### Current Salary (M2, n = 769)
+### Current Salary (M2, n = 849)
 
 | Model | Test R² | Test RMSE (NTD) | Test MAPE |
 |-------|---------|-----------------|-----------|
-| CART | -0.918 | 15,681 | 26.45% |
-| **Random Forest** | **0.250** | **9,805** | **18.32%** |
-| MLP | 0.136 | 10,526 | 18.45% |
-| TabTransformer | 0.009 | 11,274 | 20.49% |
-| FT-Transformer | 0.226 | 9,961 | 17.74% |
+| CART | 0.013 | 12,805 | 23.16% |
+| **Random Forest** | **0.156** | **11,842** | **21.50%** |
+| MLP | 0.080 | 12,365 | 21.23% |
+| TabTransformer | -0.010 | 12,949 | 22.37% |
+| FT-Transformer | 0.069 | 12,438 | 20.48% |
 
-**Random Forest achieves the best generalization on both targets.** Deep learning models (TabTransformer, MLP) exhibit significant overfitting, which is expected given the relatively small sample size for neural networks.
+**Random Forest achieves the best generalization on both targets.** All models show significant overfitting on M2, likely due to the smaller sample size (n=849) and higher variance in current salary compared to starting salary.
 
 ---
 
